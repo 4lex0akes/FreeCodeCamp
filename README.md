@@ -1,4 +1,4 @@
-# FreeCodeCamp - Scientific Computing with Python (beta) Course
+# Scientific Computing with Python (beta) Course
 Scientific Computing with Python (beta) Course
 
 1. Learn String Manipulation by Building a Cipher - "Vigenere Encryption Cipher"
