@@ -9,6 +9,13 @@ def print_expenses(expenses):
 
 # Below is a new function definition of "total_expenses" with the value of "expenses".
 def total_expenses(expenses):
-    pass
+    lambda expense: expense['amount']
+# The above lambda function uses 'expense' as the paramater and returns the value of the 'amount' key in the 'expense' dictionary. 
+
+# The below is a test variable with a lambda function value of 'x * 2'.
+test = lambda x: x * 2
+print(sum(map(test, [2, 3, 5, 8])))
+# The above is a print call to print the lambda function with variable_name 'test' using with '(3)' as the argument.
+# It is also a 'sum()' command with 'map()' as the value.
 
 expenses = []
