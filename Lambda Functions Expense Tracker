@@ -21,14 +21,13 @@ def filter_expenses_by_category(expenses, category):
 # In my example above, I have called a "filter()" passing my lambda function as the first argument and the "expenses" list as the second argument.
 
 # The below is a test variable with a lambda function value of "x * 2".
-test = lambda x: x * 2
-print(sum(map(test, [2, 3, 5, 8])))
+# -- test = lambda x: x * 2
+# -- print(sum(map(test, [2, 3, 5, 8])))
 # The above is a print call to print the lambda function with variable_name "test" using with "(3)" as the argument.
 # It is also a "sum()" command with "map()" as the value.
 
 def main():
     expenses = []
-
 # Below is my first encounter of a "while" loop. It runs a portion of code until a specified condition is "True".
     while True:
         print('\nExpense Tracker')
@@ -62,13 +61,16 @@ def main():
             category = input('Enter category to filter: ')
             print(f'\nExpenses for {category}:')
             expenses_from_category = filter_expenses_by_category(expenses, category)
-# This new line is a "print_expenses" call within the "elif" statement with "expenses_from_category" as the iterator to the call.            
             print_expenses(expenses_from_category)
+# This new line above is a "print_expenses" call within the "elif" statement with "expenses_from_category" as the iterator to the call.        
 
         elif choice == '5':
             print('Exiting the program.')
             break
 # "break" is used to stop the execution of the "while" loop. (I think it must be placed within the final function)
 
+# You can use the "__name__" variable to determine if a Python script is being run as the main program or if it is being imported as a module (code written in another Python file).
+# Below is an "if" statement to check if "__name__" equals "__main__" with the "main()" call inside this block.
+if __name__ == '__main__':
+    main()
 # "main()" is a call to the original function containing the list [1-5].
-main()
