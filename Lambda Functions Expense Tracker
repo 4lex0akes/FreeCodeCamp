@@ -9,13 +9,21 @@ def print_expenses(expenses):
 
 # Below is a new function definition of "total_expenses" with the value of "expenses".
 def total_expenses(expenses):
-    lambda expense: expense['amount']
-# The above lambda function uses 'expense' as the paramater and returns the value of the 'amount' key in the 'expense' dictionary. 
+    return sum(map(lambda expense: expense['amount'], expenses))
+# The above lambda function uses "expense" as the paramater and returns the value of the "'amount'"" key in the 'expense' dictionary. 
+# The "return" command above should return the result of the "sum()" function.
 
-# The below is a test variable with a lambda function value of 'x * 2'.
+# Below is a function defined as "filter_expenses_by_category", containing 2... Variables?
+def filter_expenses_by_category(expenses, category):
+    return filter(lambda expense: expense['category'] == category, expenses)
+# Above is a plain lambda function, using "expense" as the parameter and returning the comparison between the value of the "'category'" key of the "expense" dictionary and "category".
+# It is also now being used in a "filter()" function which allows you to select items from an iterable, such as a list, based on the output of a function.
+# In my example above, I have called a "filter()" passing my lambda function as the first argument and the "expenses" list as the second argument.
+
+# The below is a test variable with a lambda function value of "x * 2".
 test = lambda x: x * 2
 print(sum(map(test, [2, 3, 5, 8])))
-# The above is a print call to print the lambda function with variable_name 'test' using with '(3)' as the argument.
-# It is also a 'sum()' command with 'map()' as the value.
+# The above is a print call to print the lambda function with variable_name "test" using with "(3)" as the argument.
+# It is also a "sum()" command with "map()" as the value.
 
 expenses = []
