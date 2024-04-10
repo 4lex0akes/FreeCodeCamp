@@ -6,6 +6,9 @@ def convert_to_snake_case(pascal_or_camel_cased_string):
     # Below I've created a new list named "snake_cased_char_list" inside the function. Use "[]" to create the new list.
     snake_cased_char_list = []
     # Next I've added a "for" loop to iterate through "pascal_or_camel_cased_string" with the target variable "char".
+    
+##############################################################################    
+    
     for char in pascal_or_camel_cased_string:
         # Below is my first encounter of the ".isupper()" string method to check for uppercase characters.
         if char.isupper():
@@ -19,3 +22,29 @@ def convert_to_snake_case(pascal_or_camel_cased_string):
             snake_cased_char_list.append(char)
     # Below is a ".join()" string method to convert the list of characters into a string.
     snake_cased_string = ''.join(snake_cased_char_list)
+    # I can also use the ".strip()" string method, using "'_'" as the argument in the example below, to strip such unwanted charaters.
+    clean_snake_cased_string = snake_cased_string.strip('_')
+    
+    return clean_snake_cased_string
+
+##############################################################################
+
+    # These three lines of code do the same task as the for loop you worked on previously while being cleaner and somewhat faster.
+    # When you start a list comprehension with an if statement like this, Python requires you to also add an else clause to the expression.
+    # Python will interpret this updated expression as "append '_' + char.lower() to the list if char is in uppercase, append char as is otherwise" and this covers the case for both the capital and lowercase letters in the input string.
+    snake_cased_char_list = [
+        '_' + char.lower() if char.isupper()
+        else char
+        for char in pascal_or_camel_cased_string
+    ]
+    # This single line of code will join the list of characters into a string, strip off any dangling underscores, and return the resulting string. Add this line on the same level as the snake_cased_char_list variable and inside the convert_to_snake_case() function.
+    return ''.join(snake_cased_char_list).strip('_')
+
+##############################################################################
+
+def main():
+    print(convert_to_snake_case('SubjectTextToConverHere'))
+
+# Before running the below "main()" function, I'll need to make sure the file is running as a script, using the if statement below to check whether "__name__ == '__main__'".
+if __name__ == '__main__':
+    main()
