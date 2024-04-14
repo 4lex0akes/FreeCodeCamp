@@ -15,10 +15,18 @@ def generate_password(length):
     digits = string.digits
     symbols = string.punctuation
 
-# Next I will declare a variable named "all_characters" and assign it the result of concatenating my existing variables.
+    # Next I will declare a variable named "all_characters" and assign it the result of concatenating my existing variables.
     all_characters = letters + digits + symbols
     # For future reference, "''" represents an empty string. (Being assigned to the "password" variable in this example)
     password = ''
+
+    # Next, I've written a "for" loop with "i" as the loop variable, using the "range()" function to iterate up to the value of the "length".
+    # Inside the loop, I've used the addition assignment operated to add a random charater from "all_characters" to the current value of "password". 
+    # I've used the "choice()" function from the "secrets" module for that.
+    for i in range(length):
+        password += secrets.choice(all_characters)
+
+    return password
 
 ##########################
 # - print(all_characters)
