@@ -34,7 +34,24 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
         # Here I have created a "constraints" variable and assigned it an empty list with "[]"
         # A tuple is another built-in data structure in Python. Tuples are very much like lists, but they are defined with parentheses (), instead of square brackets.
         # I've now modified the "constraints" list assignment by adding a tuple to my list, using "nums" as the first item and an empty string as the second item.
-        constraints = [(nums, '')]
+        # The character class "\d" is a shorthand for "[0-9]". Below I've replaced "[0-9]" with this short hand inside the first constraint.
+        # In a character class, you can combine multiple ranges by writing one range after another inside the square brackets (without any additional characters). For example: [a-d3-6] is the combination of [a-d] and [3-6].
+        # In the same way the [0-9] class is equivalent to \d, the [^0-9] class is equivalent to \D. Alphanumeric characters can be matched with \w and non-alphanumeric characters can be matched with \W.
+        constraints = [
+            (nums, r'\d'),
+            (lowercase, r'[a-z]'),
+            (uppercase, r'[A-Z]')
+            # Below I have combined my raw string with an f-string and iterpolated my "symbols" variable within the f-string, using curly brackets "{}".
+            (special_chars, fr'[{symbols}]')
+        ]
+
+
+        # Next, I've written a "for" loop to iterate over the "constraints" list. Using "constraint" and "pattern" as the loop variables.
+        for constraint, pattern in constraints:
+            # Inside the for loop, I've called the "findall()" function, passing "pattern" and "password" as the arguments.
+            # I've also passed my existing "findall()" function call to the "len()" function.
+            len.re.findall(pattern, password)
+
 
         # I believe I must "return" the value to close the for loop.
         return password
@@ -44,14 +61,25 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
 # The "search()" function from the re module analyzes the string passed as the argument looking for the first place where the regex pattern matches the string.    
 # In your pattern, you can add a quantifier after a character to specify how many times that character should be repeated. For example, the "+" quantifier means it should repeat one or more times.
 # - "pattern = re.compile('l+')"
-# You can obtain the same result without using the "compile()"" function. Here, I have removed the previous above line of code and replaced it with the new shorter version by modifying my "pattern" variable into the literal string "'l+'" and changed the print call accordingly.
-pattern = 'l+'
-quote = 'Not all those who wander are lost.'
-# To check that the generated password meets the required features, you are going to use the "findall()" function from the re module. It's similar to search but it returns a list with all the occurrences of the matched pattern.
-print(re.findall(pattern, quote))
+# You can obtain the same result without using the "compile()" function. Here, I have removed the previous above line of code and replaced it with the new shorter version by modifying my "pattern" variable into the literal string "'l+'" and changed the print call accordingly.
+# - "pattern = 'l+'"
+# A character class is indicated by square brackets and matches one character among those specified between the brackets. For example, "ma[dnt]" matchers iether "mad, man or mat".
+# - "pattern = '[w[ha]]'"
+# The caret, "^" placed at the beginning of the character class, matches all the characters except those specified in the class.
+# - "pattern = '[^a-z]t'"
+# The dot character is a wildcard that matches any character in a string. Except for a newline character by default.
+# Here I have modified the "pattern" variable to match the entire string by replacing the current pattern with a "." followed by the "+".
+# - "pattern = '.+'"
+# If you need to match a character that has a special meaning in the pattern such as "." or "+", you can escape it by prepending a backslash character, "\". For example, this matches a literal plus sign: "\+".
+# Python provides a particular type of string called raw string. Raw strings are prefixed with a "r". The key distinction from regular strings lies in how they handle the backslash character: in raw strings, backslashes are treated as literal characters rather than escape characters. When writing regular expressions, using raw strings is a good practice, since they can usually contain a lot of "\" characters.
+pattern = r'\W'
+quote = '_'
 
-new_password = generate_password(8)
-print(new_password)
+# To check that the generated password meets the required features, you are going to use the "findall()" function from the re module. It's similar to search but it returns a list with all the occurrences of the matched pattern.
+# - "print(re.findall(pattern, quote))"
+
+# - "new_password = generate_password(8)"
+# - "print(new_password)"
 
 ##########################
 # - print(all_characters)
