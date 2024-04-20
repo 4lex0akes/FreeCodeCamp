@@ -40,7 +40,7 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
         constraints = [
             (nums, r'\d'),
             (lowercase, r'[a-z]'),
-            (uppercase, r'[A-Z]')
+            (uppercase, r'[A-Z]'),
             # Below I have combined my raw string with an f-string and iterpolated my "symbols" variable within the f-string, using curly brackets "{}".
             (special_chars, fr'[{symbols}]')
         ]
