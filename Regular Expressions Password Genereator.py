@@ -11,7 +11,7 @@ import re
 import secrets
 import string
 
-def generate_password(length, nums, special_chars, uppercase, lowercase):
+def generate_password(length=16, nums=1, special_chars=1, uppercase=1, lowercase=1):
 # Define the possible characters for the password.
     letters = string.ascii_letters
     digits = string.digits
@@ -51,15 +51,18 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
         # Having all([expression for i in iterable]), means that a new list is created by evaluating expression for each i in iterable. After the all() function iterates over the newly created list, the list is deleted automatically, since it is no longer needed.
         # Memory can be saved by using a generator expression. Generator expressions follow the syntax of list comprehensions but they use parentheses instead of square brackets.
         # I have now changed the above "if" list comprehension into a generator expression.
-        if all(        
-                constraint <= len(re.findall(pattern, password))
-                for constraint, pattern in constraints          
+        if all(
+            constraint <= len(re.findall(pattern, password))
+            for constraint, pattern in constraints
         ):
-
+            break
+    
     return password
 
-new_password = generate_password(8, 1, 1, 1, 1)
-print(new_password)
+# Finally, I have put the last two lines of my code inside an if statement that execute when __name__ == '__main__'. In this way, your code won't run when imported as a module. Otherwise, it will call generate_password() and print the generated password.
+if __name__ == '__main__':
+    new_password = generate_password()
+    print('Generated password:', new_password)
 
 
 ##########################
