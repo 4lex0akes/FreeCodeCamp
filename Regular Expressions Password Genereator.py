@@ -45,16 +45,39 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
             (special_chars, fr'[{symbols}]')
         ]
 
+        # Below I have populated the empty "all()" list with the comprehension syntax so that the list stores the results of evaluating the "constraint <= len(re.findall(pattern, password))" expression for each "constraint" and "pattern" tuple in the "constraints" list.
+        # - if all([constraint <= len(re.findall(pattern, password)) for constraint, pattern in constraints]):
 
-        # Next, I've written a "for" loop to iterate over the "constraints" list. Using "constraint" and "pattern" as the loop variables.
-        for constraint, pattern in constraints:
-            # Inside the for loop, I've called the "findall()" function, passing "pattern" and "password" as the arguments.
-            # I've also passed my existing "findall()" function call to the "len()" function.
-            len.re.findall(pattern, password)
+        # Having all([expression for i in iterable]), means that a new list is created by evaluating expression for each i in iterable. After the all() function iterates over the newly created list, the list is deleted automatically, since it is no longer needed.
+        # Memory can be saved by using a generator expression. Generator expressions follow the syntax of list comprehensions but they use parentheses instead of square brackets.
+        # I have now changed the above "if" list comprehension into a generator expression.
+        if all(        
+                constraint <= len(re.findall(pattern, password))
+                for constraint, pattern in constraints          
+        ):
+
+    return password
+
+new_password = generate_password(8, 1, 1, 1, 1)
+print(new_password)
 
 
-        # I believe I must "return" the value to close the for loop.
-        return password
+##########################
+# This hashed out part would have come after the above "count = 0", but I will now put it into a simplified version of this code.
+#        # Next, I've written a "for" loop to iterate over the "constraints" list. Using "constraint" and "pattern" as the loop variables.
+#        for constraint, pattern in constraints:
+#            # Inside the for loop, I've called the "findall()" function, passing "pattern" and "password" as the arguments.
+#            # I've also passed my existing "findall()" function call to the "len()" function.
+#            # I've replaced the rest with a comparison of "constraint" and the length of the list returned by "findall()" using the "<=" operator.
+#            # I've not turned the expression into an "if" statement.
+#            if constraint <= len(re.findall(pattern, password)):
+#                count += 1       
+#        if count == 4:  
+#            break
+#        # I believe I must "return" the value to close the for loop.
+#    return password
+##########################
+
     
 # A regular expression, or regex, is a pattern used to match a specific combination of characters inside a string. It is a valid alternative to if/else conditional statements when you need to match or find patterns inside a string for validation purposes, character replacement, and others.
 # The "compile()" function from the re module compiles the string passed as the argument into a regular expression object that can be used by other re methods.
@@ -72,8 +95,8 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
 # - "pattern = '.+'"
 # If you need to match a character that has a special meaning in the pattern such as "." or "+", you can escape it by prepending a backslash character, "\". For example, this matches a literal plus sign: "\+".
 # Python provides a particular type of string called raw string. Raw strings are prefixed with a "r". The key distinction from regular strings lies in how they handle the backslash character: in raw strings, backslashes are treated as literal characters rather than escape characters. When writing regular expressions, using raw strings is a good practice, since they can usually contain a lot of "\" characters.
-pattern = r'\W'
-quote = '_'
+# - pattern = r'\W'
+# - quote = '_'
 
 # To check that the generated password meets the required features, you are going to use the "findall()" function from the re module. It's similar to search but it returns a list with all the occurrences of the matched pattern.
 # - "print(re.findall(pattern, quote))"
