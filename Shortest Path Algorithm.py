@@ -18,6 +18,6 @@
 # For example, a graph can be used to represent two points in the space, A and B, connected by a path. A graph like this will be made of two nodes connected by an edge.
 
 my_graph = {
-    'species': 'guinea pig',
-    'age': 2
+    'A': 'B',
+    'B': 'A'
 }
