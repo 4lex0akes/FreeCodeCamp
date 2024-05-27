@@ -18,7 +18,8 @@
 # For example, a graph can be used to represent two points in the space, A and B, connected by a path. A graph like this will be made of two nodes connected by an edge.
 
 my_graph = {
-    'A': 'B',
+    'A': ['B', 'D'],
     'B': ['A', 'C'],
-    'C': 'B',
+    'C': ['B', 'D'],
+    'D': ['A', 'C']
 }
