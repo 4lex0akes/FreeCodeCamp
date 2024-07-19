@@ -29,6 +29,9 @@ def convert_to_snake_case(pascal_or_camel_cased_string):
 
 ##############################################################################
 
+    # Updated test section, requesting I "modify the return statement to return the result of joining snake_cased_char_list with an empty string as the seperator, this meant I had to use '' added to .join() as follows"
+    # return ''.join(snake_cased_char_list)
+
     # These three lines of code do the same task as the for loop you worked on previously while being cleaner and somewhat faster.
     # When you start a list comprehension with an if statement like this, Python requires you to also add an else clause to the expression.
     # Python will interpret this updated expression as "append '_' + char.lower() to the list if char is in uppercase, append char as is otherwise" and this covers the case for both the capital and lowercase letters in the input string.
